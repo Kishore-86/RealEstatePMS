@@ -1,0 +1,23 @@
+.upload-container {
+
+    padding: 1rem;
+
+}
+
+
+lightning-input {
+
+    margin-bottom: 1rem;
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .upload-container {
+
+        padding: 0.5rem;
+
+    }
+
+}

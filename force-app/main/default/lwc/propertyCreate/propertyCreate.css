@@ -1,0 +1,33 @@
+.property-form {
+    padding: 1rem;
+}
+
+lightning-input-field {
+    margin-bottom: 0.75rem;
+}
+
+lightning-input[type="file"] {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+lightning-button {
+    margin-top: 1rem;
+}
+
+p {
+    font-size: 0.9rem;
+    color: #444;
+}
+
+@media screen and (max-width: 768px) {
+
+    .property-form {
+        padding: 0.5rem;
+    }
+
+    lightning-button {
+        width: 100%;
+    }
+
+}

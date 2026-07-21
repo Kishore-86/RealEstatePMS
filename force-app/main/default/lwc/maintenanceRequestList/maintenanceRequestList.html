@@ -1,0 +1,135 @@
+<template>
+
+    <lightning-card
+        title="Maintenance Request List"
+        icon-name="standard:work_order">
+
+        <template if:true={isLoading}>
+            <lightning-spinner
+                alternative-text="Loading"
+                size="medium">
+            </lightning-spinner>
+        </template>
+
+        <div class="slds-p-around_medium">
+
+            <div class="slds-grid slds-wrap slds-gutters">
+
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+
+                    <lightning-input
+                        type="search"
+                        label="Search Request"
+                        placeholder="Search by Name"
+                        value={searchKey}
+                        onchange={handleSearch}>
+                    </lightning-input>
+
+                </div>
+
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4">
+
+                    <lightning-combobox
+                        label="Sort By"
+                        value={sortField}
+                        options={sortFieldOptions}
+                        onchange={handleSort}>
+                    </lightning-combobox>
+
+                </div>
+
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4">
+
+                    <lightning-combobox
+                        label="Order"
+                        value={sortDirection}
+                        options={sortDirectionOptions}
+                        onchange={handleSortDirection}>
+                    </lightning-combobox>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <template if:true={maintenanceRequests}>
+
+            <div class="table-container">
+
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Request</th>
+                            <th>Property</th>
+                            <th>Vendor</th>
+                            <th>Status</th>
+                            <th>Description</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <template
+                            for:each={maintenanceRequests}
+                            for:item="request">
+
+                            <tr key={request.Id}>
+
+                                <td>{request.Name}</td>
+                                <td>{request.propertyName}</td>
+                                <td>{request.vendorName}</td>
+                                <td>{request.Status__c}</td>
+                                <td>{request.Description__c}</td>
+
+                            </tr>
+
+                        </template>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </template>
+
+        <template if:true={error}>
+
+            <div class="slds-text-color_error slds-p-around_medium">
+                Error loading maintenance requests.
+            </div>
+
+        </template>
+
+        <div class="slds-p-around_medium slds-align_absolute-center">
+
+            <lightning-button
+                label="Previous"
+                onclick={previousPage}
+                disabled={disablePrevious}>
+            </lightning-button>
+
+            <span class="slds-m-horizontal_large">
+
+                Page {pageNumber} of {totalPages}
+
+            </span>
+
+            <lightning-button
+                label="Next"
+                variant="brand"
+                onclick={nextPage}
+                disabled={disableNext}>
+            </lightning-button>
+
+        </div>
+
+    </lightning-card>
+
+</template>

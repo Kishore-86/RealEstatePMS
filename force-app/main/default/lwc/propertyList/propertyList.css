@@ -1,0 +1,49 @@
+:host {
+    display: block;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f3f3f3;
+    font-weight: 600;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 10px;
+    white-space: nowrap;
+}
+
+.slds-grid {
+    margin-bottom: 1rem;
+}
+
+lightning-button {
+    margin: 0 5px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    th,
+    td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .slds-grid {
+        display: block;
+    }
+
+    .slds-col {
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,123 @@
+<template>
+
+    <lightning-card
+        title="Create Property"
+        icon-name="standard:household">
+
+        <template if:true={isLoading}>
+            <lightning-spinner
+                alternative-text="Saving Property"
+                size="medium">
+            </lightning-spinner>
+        </template>
+
+        <div class="property-form slds-p-around_medium">
+
+            <lightning-record-edit-form
+                object-api-name="Property__c"
+                onsubmit={handleSubmit}
+                onsuccess={handleSuccess}
+                onerror={handleError}>
+
+                <div class="slds-grid slds-wrap slds-gutters">
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <lightning-input-field field-name="Name"></lightning-input-field>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <lightning-input-field field-name="Property_Type__c"></lightning-input-field>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <lightning-input-field field-name="Property_Status__c"></lightning-input-field>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <lightning-input-field field-name="Furnishing_Status__c"></lightning-input-field>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <lightning-input-field field-name="Rent__c"></lightning-input-field>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <lightning-input-field field-name="Property_Size__c"></lightning-input-field>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <lightning-input-field field-name="City__c"></lightning-input-field>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <lightning-input-field field-name="State__c"></lightning-input-field>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <lightning-input-field field-name="Postal_Code__c"></lightning-input-field>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <lightning-input-field field-name="Country__c"></lightning-input-field>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1">
+                        <lightning-input-field field-name="Address__c"></lightning-input-field>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1">
+                        <lightning-input-field field-name="Description__c"></lightning-input-field>
+                    </div>
+
+                    <!-- Property Image -->
+
+                    <div class="slds-col slds-size_1-of-1">
+
+                        <lightning-input
+                            type="file"
+                            label="Property Image"
+                            accept=".jpg,.jpeg,.png"
+                            onchange={handleFileChange}>
+                        </lightning-input>
+
+                    </div>
+
+                    <template if:true={fileName}>
+
+                        <div class="slds-col slds-size_1-of-1 slds-m-top_small">
+
+                            <p>
+                                <strong>Selected Image:</strong>
+                                {fileName}
+                            </p>
+
+                        </div>
+
+                    </template>
+
+                </div>
+
+                <div class="slds-m-top_large slds-align_absolute-center">
+
+                    <lightning-button
+                        type="reset"
+                        label="Reset"
+                        variant="neutral"
+                        class="slds-m-right_small">
+                    </lightning-button>
+
+                    <lightning-button
+                        type="submit"
+                        label="Save Property"
+                        variant="brand">
+                    </lightning-button>
+
+                </div>
+
+            </lightning-record-edit-form>
+
+        </div>
+
+    </lightning-card>
+
+</template>

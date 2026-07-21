@@ -1,0 +1,190 @@
+<template>
+
+    <lightning-card title="Property List" icon-name="standard:household">
+
+        <template if:true={isLoading}>
+            <lightning-spinner
+                alternative-text="Loading"
+                size="medium">
+            </lightning-spinner>
+        </template>
+
+        <div class="slds-p-around_medium">
+
+            <div class="slds-grid slds-wrap slds-gutters">
+
+                <!-- Search -->
+
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-3">
+
+                    <lightning-input
+                        type="search"
+                        label="Search Property"
+                        placeholder="Search by Property Name"
+                        value={searchKey}
+                        onchange={handleSearch}>
+                    </lightning-input>
+
+                </div>
+
+                <!-- Minimum Rent -->
+
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-3">
+
+                    <lightning-input
+                        type="number"
+                        label="Minimum Rent"
+                        value={minPrice}
+                        onchange={handleMinPrice}>
+                    </lightning-input>
+
+                </div>
+
+                <!-- Maximum Rent -->
+
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-3">
+
+                    <lightning-input
+                        type="number"
+                        label="Maximum Rent"
+                        value={maxPrice}
+                        onchange={handleMaxPrice}>
+                    </lightning-input>
+
+                </div>
+
+                <!-- Property Status -->
+
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4">
+
+                    <lightning-combobox
+                        label="Availability"
+                        value={propertyStatus}
+                        options={propertyStatusOptions}
+                        onchange={handlePropertyStatus}>
+                    </lightning-combobox>
+
+                </div>
+
+                <!-- Furnishing Status -->
+
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4">
+
+                    <lightning-combobox
+                        label="Furnishing"
+                        value={furnishingStatus}
+                        options={furnishingStatusOptions}
+                        onchange={handleFurnishingStatus}>
+                    </lightning-combobox>
+
+                </div>
+
+                <!-- Sort Field -->
+
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4">
+
+                    <lightning-combobox
+                        label="Sort By"
+                        value={sortField}
+                        options={sortFieldOptions}
+                        onchange={handleSort}>
+                    </lightning-combobox>
+
+                </div>
+
+                <!-- Sort Direction -->
+
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4">
+
+                    <lightning-combobox
+                        label="Order"
+                        value={sortDirection}
+                        options={sortDirectionOptions}
+                        onchange={handleSortDirection}>
+                    </lightning-combobox>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="slds-p-horizontal_medium">
+            <template if:true={properties}>
+
+    <div class="table-container">
+
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+
+            <thead>
+
+                <tr>
+
+                    <th>Property Name</th>
+                    <th>City</th>
+                    <th>Property Type</th>
+                    <th>Status</th>
+                    <th>Furnishing</th>
+                    <th>Rent</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <template for:each={properties} for:item="property">
+
+                    <tr key={property.Id}>
+
+                        <td>{property.Name}</td>
+                        <td>{property.City__c}</td>
+                        <td>{property.Property_Type__c}</td>
+                        <td>{property.Property_Status__c}</td>
+                        <td>{property.Furnishing_Status__c}</td>
+                        <td>{property.Rent__c}</td>
+
+                    </tr>
+
+                </template>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</template>
+                        <template if:true={error}>
+                <div class="slds-text-color_error slds-p-around_medium">
+                    Error loading properties.
+                </div>
+            </template>
+
+        </div>
+
+        <div class="slds-p-around_medium slds-align_absolute-center">
+
+            <lightning-button
+                label="Previous"
+                variant="neutral"
+                onclick={previousPage}
+                disabled={disablePrevious}>
+            </lightning-button>
+
+            <span class="slds-m-horizontal_large slds-text-title_bold">
+                Page {pageNumber} of {totalPages}
+            </span>
+
+            <lightning-button
+                label="Next"
+                variant="brand"
+                onclick={nextPage}
+                disabled={disableNext}>
+            </lightning-button>
+
+        </div>
+
+    </lightning-card>
+
+</template>

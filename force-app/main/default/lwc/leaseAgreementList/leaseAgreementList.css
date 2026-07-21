@@ -1,0 +1,25 @@
+.table-container {
+    overflow-x: auto;
+}
+
+.slds-table th {
+    background-color: #f3f3f3;
+    font-weight: 600;
+}
+
+.slds-table td,
+.slds-table th {
+    white-space: nowrap;
+}
+
+.slds-m-horizontal_large {
+    font-weight: bold;
+}
+
+@media screen and (max-width:768px){
+
+    .slds-table{
+        font-size:0.85rem;
+    }
+
+}

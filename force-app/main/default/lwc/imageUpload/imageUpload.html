@@ -1,0 +1,73 @@
+<template>
+
+    <lightning-card
+        title="Property Image Upload"
+        icon-name="standard:file">
+
+        <template if:true={isLoading}>
+            <lightning-spinner
+                alternative-text="Uploading Image"
+                size="medium">
+            </lightning-spinner>
+        </template>
+
+
+        <div class="slds-p-around_medium">
+
+
+            <!-- Property Selection -->
+
+            <lightning-input
+                type="text"
+                label="Property Id"
+                value={propertyId}
+                onchange={handlePropertyId}>
+            </lightning-input>
+
+
+            <!-- File Upload -->
+
+            <lightning-input
+                type="file"
+                label="Select Property Image"
+                accept=".jpg,.jpeg,.png"
+                onchange={handleFileChange}>
+            </lightning-input>
+
+
+            <template if:true={fileName}>
+
+                <div class="slds-m-top_small">
+
+                    Selected File:
+
+                    <strong>
+                        {fileName}
+                    </strong>
+
+                </div>
+
+            </template>
+
+
+            <!-- Upload Button -->
+
+            <div class="slds-m-top_medium">
+
+                <lightning-button
+                    label="Upload Image"
+                    variant="brand"
+                    onclick={handleUpload}
+                    disabled={isUploadDisabled}>
+                </lightning-button>
+
+            </div>
+
+
+        </div>
+
+
+    </lightning-card>
+
+
+</template>
